@@ -22,6 +22,12 @@
             ]
           },
           {
+            "group": "Features",
+            "pages": [
+              "features/surfaces"
+            ]
+          },
+          {
             "group": "Essentials",
             "pages": [
               "essentials/markdown",
@@ -30,12 +36,6 @@
               "essentials/settings",
               "essentials/navigation",
               "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "Features",
-            "pages": [
-              "features/surfaces"
             ]
           }
         ]
@@ -65,17 +65,12 @@
       "anchors": [
         {
           "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "href": "https://docs.aampe.com/docs",
           "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
+        }
         {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://aampe.com/blog",
           "icon": "newspaper"
         }
       ]
@@ -89,20 +84,19 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@aampe.com"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Composer",
+      "href": "https://compose.aampe.com"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "gitlab": "https://gitlab.com/aampe",
+      "linkedin": "https://www.linkedin.com/company/aampe"
     }
   }
 }
