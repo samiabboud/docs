@@ -1,0 +1,92 @@
+---
+title: 'Braze'
+description: 'Aampe <> Braze.'
+---
+
+<Tip>
+  Estimated setup time: 30 minutes
+</Tip>
+
+## Connection Requirements
+
+- An **API Key** for your app group.
+- The Braze **[dashboard URL](https://www.braze.com/docs/api/basics/#api-definitions)** that you use (`dashboard-01` to `08` or `dashboard-01.braze.eu`)
+
+Aampe will essentially call the [Braze API for sending messages](https://www.braze.com/docs/api/endpoints/messaging/send_messages/post_send_messages/)  
+on your behalf.
+
+#### Create an API key
+
+1. Braze dashboard from Settings > API Keys
+2. On this page you will find the **Rest API Keys** table
+
+![](https://files.readme.io/0af87c6-braze_api_keys.png "braze_api_keys.png")
+
+3. Click on **+ Create New API Key**
+4. Choose a name for your new key, such as **aampe-personalisation**
+5. Tick the checkboxes to add following permissions
+
+| Braze Permission                  | Braze REST API endpoint                                                                                                                                          | Aampe usage                                                                                                          |
+| :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------- |
+| users.export.ids                  | [GET /users/export/ids](https://www.braze.com/docs/api/endpoints/export/user_data/post_users_identifier/#prerequisites)                                          | For exporting current users                                                                                          |
+| users.export.segment              | [GET /users/export/segment](https://www.braze.com/docs/api/endpoints/export/user_data/post_users_segment/#prerequisites)                                        | For exporting current user attributes                                                                                |
+| sends.id.create                   | [POST /sends/id/create](https://www.braze.com/docs/api/endpoints/messaging/send_messages/post_create_send_ids/#prerequisites)                                    | For create ids for message performance tracking                                                                      |
+| messages.send                     | [POST /messages/send](https://www.braze.com/docs/api/endpoints/messaging/send_messages/post_send_messages)                                                       | Trigger an API Campaign in Braze.                                                                                    |
+| campaigns.trigger.send            | [POST /campaigns/trigger/send](https://www.braze.com/docs/api/endpoints/messaging/send_messages/post_send_triggered_campaigns)                                   | Trigger a send for a campaign that is configured for API-triggered delivery.                                         |
+| campaigns.trigger.schedule.create | [POST /campaigns/trigger/schedule/create](https://www.braze.com/docs/api/endpoints/messaging/schedule_messages/post_schedule_triggered_campaigns/#prerequisites) | Trigger a send for a campaign that is configured for scheduled API-triggered delivery.                               |
+| campaigns.list                    | [GET /campaigns/list](https://www.braze.com/docs/api/endpoints/export/campaigns/get_campaigns)                                                                   | Retrieve the list of all the campaigns configured in Braze and their associated metadata.                            |
+| canvas.data_series                | [GET /campaigns/data_series](https://www.braze.com/docs/api/endpoints/export/campaigns/get_campaign_analytics)                                                   | Retrieve the analytics data of a specific Braze campaign.                                                            |
+| campaigns.details                 | [GET /campaigns/details](https://www.braze.com/docs/api/endpoints/export/campaigns/get_campaign_details)                                                         | Retrieve the details of a specific Braze campaign.                                                                   |
+| segments.list                     | [GET /segments/list](https://www.braze.com/docs/api/endpoints/export/segments/get_segment)                                                                       | Retrieve the list of all the segments configured in Braze and their associated metadata.                             |
+| segments.data_series              | [GET /segments/data_series](https://www.braze.com/docs/api/endpoints/export/segments/get_segment_analytics)                                                      | Retrieve the size of the Braze segment.                                                                              |
+| segments.details                  | [GET /segments/details](https://www.braze.com/docs/api/endpoints/export/segments/get_segment_details)                                                            | Retrieve the details of a specific Braze segment.                                                                    |
+| email.unsubscribe                 |                                                                                                                                                                  | For retrieving email unsubscribe information                                                                         |
+| email.hard_bounces                | [GET /email/hard_bounce](https://www.braze.com/docs/api/endpoints/email/get_list_hard_bounces#query-or-list-hard-bounced-emails)                                 | To retrieve email bounce information                                                                                 |
+| templates.info                    | [GET /templates/email/info](https://www.braze.com/docs/api/endpoints/templates/email_templates/get_see_email_template_information)                               | Retrieve the details of a specific Braze HTML email template.                                                        |
+| templates.list                    | [GET /templates/email/list](https://www.braze.com/docs/api/endpoints/templates/email_templates/get_list_email_templates)                                         | Retrieve the list of all the Braze HTML email templates configured in Braze and their subject line and HTML content. |
+| subscription.status.get           | [GET /subscription/user/status](https://www.braze.com/docs/api/endpoints/subscription_groups/get_list_user_subscription_groups)                                  | To get subscription status                                                                                           |
+| subscription.groups.get           | [GET /subscription.groups.get](https://www.braze.com/docs/api/endpoints/subscription_groups/get_list_user_subscription_groups/#prequisites)                      | To get subscription groups                                                                                           |
+
+![](https://files.readme.io/1747d4d-braze_permission_list.png "braze_permission_list.png")
+
+6. Finalize the key creation.
+7. You can then view the newly created key by clicking on the gear icon at the right
+8. Copy the API key value.
+9. Login into the [Aampe](https://compose.aampe.com/auth/login) composer using your Aampe credentials.  
+   Enter **System setup -> Integrations -> Braze**. Activate **Braze**
+
+<Frame>
+  <img src="https://files.readme.io/49b2df3842f9e5e2a642141635052f8befe2c36f5b02bd31c16ade68c4a30038-Screenshot_2025-01-29_at_19.11.45.png" />
+</Frame>
+
+Enter the API key and dashboard URL copied from the earlier steps. Your connection is now ready to deliver messages
+
+## API Campaign Setup
+
+Setting up an API Campaign in Braze allows you to send transactional messages by generating a campaign_id for use in your API calls. This process involves creating the campaign in the Braze dashboard and then using the campaign_id in your API requests to send messages. Here's a step-by-step guide to setting up an API Campaign:
+
+**Access the Braze Dashboard**:
+
+1. Log in to your Braze account. Navigate to the **Messaging** section and select **Campaigns**.
+
+<Frame>
+  <img src="https://files.readme.io/03a810a84baa03d5e0137e538c47cf2718a00ddc6a431eb34cf703e375ade96c-Screenshot_2025-01-29_at_20.51.47.png" />
+</Frame>
+
+2. Create a New Campaign: **Click on Create Campaign**. Choose **API Campaigns** as the campaign type.
+
+<Frame>
+  <img src="https://files.readme.io/4f3788bdc14bcf68d5ba3951977645a8b7db4e9b4889cf80b936ffb81886ffb1-Screenshot_2025-01-29_at_20.51.36.png" />
+</Frame>
+
+3. Configure the Campaign: Name the Campaign: Provide a descriptive title to easily identify the campaign later. 
+
+   - Add Message: **Click on Add Message** Select the message types (channels) you intend to use (e.g., Email, SMS, Push Notifications). This action will generate a **campaign_id** and a message variation ID for each channel.
+4. **Optional - Add Conversion Events**: If you wish to track specific user actions as conversions, you can add a conversion event to the campaign.
+5. **Save the Campaign**: After configuring the necessary settings, click on Save Campaign.
+6. **Implement the API Campaign**: Retrieve the **campaign_id**: After saving, note the campaign_id generated for your campaign.
+   - **Prepare Your API Request**:
+     - In your API request, include the **campaign_id** in the appropriate field as specified in Braze's Send Messages Endpoints documentation.
+     - For each platform included in the campaign, provide the corresponding message variation ID within the message object.
+
+You are all set with Braze!
