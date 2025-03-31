@@ -1,0 +1,77 @@
+---
+title: "Surfaces"
+description: "App-native personalized surfaces"
+---
+
+## Creating Your First Surface
+
+Let's walk through setting up your first Surface in Composer:
+
+1. Navigate to the Surfaces section and click**Create Surface** 
+2. ![De35d698a50e6128bc4fc4200a2b9eff249e65cd38a47cdb54b414a17e488dda Screenshot 2024 11 19 At 16 21 55 Pn](/images/de35d698a50e6128bc4fc4200a2b9eff249e65cd38a47cdb54b414a17e488dda-Screenshot_2024-11-19_at_16.21.55.png)
+
+   Choose a descriptive name (like "Banner"), add an optional description, and apply relevant tags
+3. Set up Frequency Guardrails to control how often content is displayed to users
+
+## Designing Your Template
+
+The Template defines the structure of your API response. Each Element you add becomes a property in the returned JSON. For example:
+
+```json
+{  
+  "headline": "some text generated for the surface",  
+  "body": "some more text generated for the surface"  
+}
+```
+
+We offer several pre-defined element types to get you started. Most elements return a simple string, while special types like Buttons provide structured data:
+
+```json
+{  
+  "callToActionButton": {  
+    "label": "Click me!",  
+    "action": "deeplink://link-to-something"  
+  }  
+}
+```
+
+> Coming Soon: Fully customizable Templates\! Want early access? Reach out to our team to be among the first to try this feature.
+
+Pro tip: Each Element has a human-readable name that helps you identify fields in the editor – this won't affect your API response.
+
+## Creating Dynamic Messages
+
+Similar to Push Messages, Surface Messages can be targeted to specific Audiences. When a user requests content, our intelligent Aampe Agents select the most appropriate Message based on:
+
+1. The user's matching Audiences
+2. The specific Surface being requested
+3. Current content optimization parameters
+
+## Setting Up Your First Message
+
+1. **Click** "Add Message" and give it a meaningful name
+2. **Select** your target Audience
+3. Optionally, add labels to organize your Message
+
+## Crafting Your Content
+
+The Message Editor will feel familiar if you've used Composer before. Each section corresponds to a Template Element, and you can populate them using:
+
+1. Static text
+2. Components
+3. Datasets
+4. CMS data
+
+## Going Live
+
+> Remember: Only Live Messages are used to generate Surface content - Drafts remain inactive.
+
+## Implementation Guide
+
+Once your Message is live, the Review screen provides everything you need to integrate with the Content API. Note that content is cached for up to 24 hours for each Surface-User combination, so repeated calls to the API with the same parameters will result in the same content being returned.
+
+### API Implementation
+
+You can find detailed API documentation at [Surface API](https://docs.aampe.com/reference/get_surface_content_v1_surface_content_get)
+
+API content is updated every 24 hours. The API returns a list of surfaces, so a single API call can be used to personalize several parts of your app or website.
