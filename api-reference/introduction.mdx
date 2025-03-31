@@ -4,30 +4,27 @@ description: 'Example section for showcasing API endpoints'
 ---
 
 <Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
+  Some note
 </Note>
 
 ## Welcome
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+:wave:
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+API Key authentication involves including a unique key with your request to identify your application. This method is straightforward and suitable for client-side applications.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+### Using Your API Key
+
+Include your API key in the header of each request:
+
+```Text Headers
+Content-Type: application/json
+X-API-Key: YOUR-REST-API-KEY
 ```
+
+### Error Handling
+
+- 401 Unauthorized: Invalid or missing authentication credentials.
+- 403 Forbidden: The authenticated user does not have access to the requested resource.
